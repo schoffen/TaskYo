@@ -17,37 +17,41 @@
         android:text="@string/app_name"
         android:textColor="@color/white"
         android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@id/card_view"
+        app:layout_constraintBottom_toTopOf="@+id/card_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        android:layout_width="242dp"
-        android:layout_height="228dp"
+        android:layout_width="280dp"
+        android:layout_height="260dp"
         android:backgroundTint="@color/blue_200"
-        android:paddingVertical="20dp"
         app:cardCornerRadius="10dp"
-        app:layout_constraintBottom_toTopOf="@id/ll_social_medias"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingHorizontal="20dp"
+            >
 
             <EditText
                 android:id="@+id/et_email"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="emailAddress"
                 android:background="@drawable/field_box"
                 android:fontFamily="@font/comfortaa"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
+                android:minHeight="48dp"
                 android:paddingHorizontal="10dp"
+                android:textColorHint="#757575"
                 app:layout_constraintBottom_toTopOf="@id/et_password"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -55,14 +59,16 @@
 
             <EditText
                 android:id="@+id/et_password"
-                android:layout_width="200dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="password"
                 android:background="@drawable/field_box"
                 android:fontFamily="@font/comfortaa"
                 android:hint="@string/password"
                 android:inputType="textPassword"
+                android:minHeight="48dp"
                 android:paddingHorizontal="10dp"
+                android:textColorHint="#757575"
                 app:layout_constraintBottom_toTopOf="@id/btn_login"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +82,9 @@
                 android:fontFamily="@font/comfortaa"
                 android:text="@string/login"
                 android:textStyle="bold"
+                android:textSize="18sp"
+                android:paddingHorizontal="20sp"
+                android:paddingVertical="5sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -87,8 +96,8 @@
         android:id="@+id/ll_social_medias"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/btn_create_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/card_view">
@@ -125,9 +134,9 @@
         android:fontFamily="@font/comfortaa"
         android:text="@string/create_account"
         android:textColor="@color/white"
+        android:layout_marginBottom="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_social_medias" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
