@@ -4,4 +4,7 @@
     <string name="email">email</string>
     <string name="password">password</string>
     <string name="create_account">don’t have account? create account here</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="unclassified_tasks">UNCLASSIFIED TASKS</string>
+    <string name="save">Save</string>
 </resources>
