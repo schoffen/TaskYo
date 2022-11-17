@@ -16,30 +16,23 @@
     >
 
     <EditText
-        android:id="@+id/et_task"
+        android:id="@+id/et_taskList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autofillHints="emailAddress"
         android:fontFamily="@font/comfortaa"
         android:backgroundTint="@color/white"
-        android:hint="new task"
+        android:hint="new list"
+        android:textColorHint="@color/white"
         android:minHeight="48dp"
         android:paddingHorizontal="10dp"
         android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@id/iv_flag"
+        app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         >
         <requestFocus/>
     </EditText>
-
-    <ImageView
-        android:id="@+id/iv_flag"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_white_flag"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_task" />
 
     <TextView
         android:id="@+id/btn_save"
@@ -50,7 +43,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_task" />
+        app:layout_constraintTop_toBottomOf="@+id/et_taskList" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

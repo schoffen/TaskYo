@@ -4,15 +4,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     style="@style/dark_blue_background"
-    android:paddingTop="5sp"
-    android:paddingBottom="15sp"
-    android:paddingHorizontal="10sp"
+
     >
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Project X"
+        android:background="#00000000"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

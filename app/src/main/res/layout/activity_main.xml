@@ -5,7 +5,7 @@
     style="@style/dark_blue_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="10sp"
+    android:paddingHorizontal="5sp"
     tools:context=".MainActivity">
 
     <TextView
@@ -32,13 +32,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:itemCount="5"
-            tools:listitem="@layout/task_item" />
+            tools:listitem="@layout/task_item" >
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </ScrollView>
 
     <ScrollView
         android:id="@+id/sv_lists"
-        android:layout_width="250sp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_new_list"
@@ -50,38 +52,39 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/lists_item" />
+            tools:listitem="@layout/lists_item"
+            tools:itemCount="2"/>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/line"
-        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_line"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:src="@drawable/line"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <TextView
+    <Button
         android:id="@+id/btn_new_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingHorizontal="10sp"
-        android:paddingTop="5sp"
-        android:paddingBottom="15sp"
         android:text="+ New List"
+        android:textColor="@drawable/custom_button_click"
         android:textSize="16sp"
+        android:background="#00000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
+    <Button
         android:id="@+id/btn_unclassified_tasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10sp"
-        android:paddingTop="5sp"
-        android:paddingBottom="15sp"
-        android:text="Tasks"
+        android:background="#00000000"
+        android:backgroundTint="#00000000"
+        android:textColor="@drawable/custom_button_click"
+        android:text="HOME"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -93,7 +96,7 @@
         android:src="@drawable/ic_plus"
         android:layout_margin="5sp"
         app:backgroundTint="@color/blue_200"
-        app:layout_constraintBottom_toTopOf="@id/imageView"
+        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="contentDescription,SpeakableTextPresentCheck" />
 
