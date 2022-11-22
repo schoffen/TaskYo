@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@drawable/task_item_background_middle"
-        android:textColor="@drawable/custom_button_click_blue_600"
+        android:textColor="@drawable/click_text_blue_600"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center_vertical"

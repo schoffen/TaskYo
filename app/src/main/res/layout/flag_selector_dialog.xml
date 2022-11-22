@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/dark_blue_background"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@drawable/flag_dialog_background"
     android:orientation="vertical"
-    android:padding="5sp"
-    >
+    android:padding="5sp">
 
     <LinearLayout
         android:id="@+id/btn_white_flag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/click_item_flag_dialog"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal"
         android:paddingHorizontal="5sp">
 
@@ -20,15 +22,16 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:paddingHorizontal="5sp"
-            android:text="@string/no_priority" />
+            android:text="@string/no_priority"
+            android:textColor="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/flag"
             android:paddingHorizontal="5sp"
-            android:src="@drawable/ic_white_flag"
-            android:contentDescription="@string/flag" />
+            android:src="@drawable/ic_flag_white" />
 
     </LinearLayout>
 
@@ -36,6 +39,9 @@
         android:id="@+id/btn_green_flag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/click_item_flag_dialog"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal"
         android:paddingHorizontal="5sp">
 
@@ -45,15 +51,16 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:paddingHorizontal="5sp"
-            android:text="@string/low_priority" />
+            android:text="@string/low_priority"
+            android:textColor="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/flag"
             android:paddingHorizontal="5sp"
-            android:src="@drawable/ic_green_flag"
-            android:contentDescription="@string/flag" />
+            android:src="@drawable/ic_flag_green" />
 
     </LinearLayout>
 
@@ -61,6 +68,9 @@
         android:id="@+id/btn_orange_flag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/click_item_flag_dialog"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal"
         android:paddingHorizontal="5sp">
 
@@ -70,15 +80,16 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:paddingHorizontal="5sp"
-            android:text="@string/medium_priority" />
+            android:text="@string/medium_priority"
+            android:textColor="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/flag"
             android:paddingHorizontal="5sp"
-            android:src="@drawable/ic_orange_flag"
-            android:contentDescription="@string/flag"/>
+            android:src="@drawable/ic_flag_orange" />
 
     </LinearLayout>
 
@@ -86,6 +97,9 @@
         android:id="@+id/btn_red_flag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/click_item_flag_dialog"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal"
         android:paddingHorizontal="5sp">
 
@@ -95,15 +109,16 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:paddingHorizontal="5sp"
-            android:text="@string/high_priority" />
+            android:text="@string/high_priority"
+            android:textColor="@color/white" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/flag"
             android:paddingHorizontal="5sp"
-            android:src="@drawable/ic_red_flag"
-            android:contentDescription="@string/flag"/>
+            android:src="@drawable/ic_flag_red" />
 
     </LinearLayout>
 </LinearLayout>

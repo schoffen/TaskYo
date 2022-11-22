@@ -2,15 +2,15 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_focused="true"
         android:state_pressed="false"
-        android:drawable="@drawable/ic_config" /> <!-- pressed -->
+        android:drawable="@drawable/ic_menu_config_gray" /> <!-- pressed -->
 
     <item android:state_focused="true"
         android:state_pressed="true"
-        android:drawable="@drawable/ic_config_clicked" /> <!-- focused -->
+        android:drawable="@drawable/ic_menu_config_colored" /> <!-- focused -->
 
     <item android:state_focused="false"
         android:state_pressed="true"
-        android:drawable="@drawable/ic_config_clicked" /> <!-- focused -->
+        android:drawable="@drawable/ic_menu_config_colored" /> <!-- focused -->
 
-    <item android:drawable="@drawable/ic_config" /> <!-- default -->
+    <item android:drawable="@drawable/ic_menu_config_gray" /> <!-- default -->
 </selector>

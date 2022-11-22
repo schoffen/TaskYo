@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="emailAddress"
-                android:background="@drawable/custom_input"
+                android:background="@drawable/input_background"
                 android:fontFamily="@font/comfortaa"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints="password"
-                android:background="@drawable/custom_input"
+                android:background="@drawable/input_background"
                 android:fontFamily="@font/comfortaa"
                 android:hint="@string/password"
                 android:inputType="textPassword"
@@ -101,7 +101,7 @@
             android:layout_width="65sp"
             android:layout_height="65sp"
             android:layout_weight="1"
-            android:src="@drawable/google_icon"
+            android:src="@drawable/ic_png_google"
             tools:ignore="contentDescription" />
 
         <ImageView
@@ -109,7 +109,7 @@
             android:layout_width="65sp"
             android:layout_height="65sp"
             android:layout_weight="1"
-            android:src="@drawable/facebook_icon"
+            android:src="@drawable/ic_png_facebook"
             tools:ignore="contentDescription" />
 
         <ImageView
@@ -117,7 +117,7 @@
             android:layout_width="65sp"
             android:layout_height="65sp"
             android:layout_weight="1"
-            android:src="@drawable/github_icon"
+            android:src="@drawable/ic_png_github"
             tools:ignore="contentDescription" />
     </LinearLayout>
 

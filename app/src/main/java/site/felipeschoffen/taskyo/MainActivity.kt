@@ -2,6 +2,8 @@ package site.felipeschoffen.taskyo
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -103,9 +105,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listMenuBehavior() {
+        setListMenuIcon()
         setListMenuVisibility()
         setListMenuAnimation()
         listMenuSwitch = !listMenuSwitch
+    }
+
+    private fun setListMenuIcon() {
+        if (!listMenuSwitch) {
+            binding.btnLists.setImageResource(R.drawable.ic_menu_lists_colored)
+        } else {
+            binding.btnLists.setImageResource(R.drawable.ic_menu_lists_gray)
+        }
     }
 
     private fun setListMenuVisibility() {
@@ -344,10 +355,10 @@ class MainActivity : AppCompatActivity() {
                 binding.tvTask.text = task.description
 
                 when (task.priority) {
-                    Flag.WHITE -> binding.ivFlag.setImageResource(R.drawable.ic_white_flag)
-                    Flag.GREEN -> binding.ivFlag.setImageResource(R.drawable.ic_green_flag)
-                    Flag.ORANGE -> binding.ivFlag.setImageResource(R.drawable.ic_orange_flag)
-                    Flag.RED -> binding.ivFlag.setImageResource(R.drawable.ic_red_flag)
+                    Flag.WHITE -> binding.ivFlag.setImageResource(R.drawable.ic_flag_white)
+                    Flag.GREEN -> binding.ivFlag.setImageResource(R.drawable.ic_flag_green)
+                    Flag.ORANGE -> binding.ivFlag.setImageResource(R.drawable.ic_flag_orange)
+                    Flag.RED -> binding.ivFlag.setImageResource(R.drawable.ic_flag_red)
                 }
 
                 binding.btnDelete.setOnClickListener {
@@ -362,6 +373,7 @@ class MainActivity : AppCompatActivity() {
             fun showPriorityDialog() {
                 val dialogBinding = FlagSelectorDialogBinding.inflate(layoutInflater)
                 val dialog = Dialog(this@MainActivity)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.setContentView(dialogBinding.root)
                 dialog.show()
             }

@@ -76,7 +76,7 @@
         android:paddingHorizontal="10sp"
         android:paddingVertical="6sp"
         android:text="@string/plus_new_list"
-        android:textColor="@drawable/custom_button_click_blue_600"
+        android:textColor="@drawable/click_text_blue_600"
         android:textSize="12sp"
         android:visibility="invisible"
         android:layout_marginBottom="10sp"
@@ -100,7 +100,7 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/lists_item_click"
+            android:src="@drawable/click_menu_lists_icon"
             android:contentDescription="@string/lists_menu"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -110,7 +110,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/home_item_click"
+            android:src="@drawable/click_menu_home_icon"
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/home_menu"
@@ -125,7 +125,7 @@
             android:clickable="true"
             android:focusable="true"
             android:contentDescription="@string/config"
-            android:src="@drawable/menu_item_click"
+            android:src="@drawable/click_menu_config_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
