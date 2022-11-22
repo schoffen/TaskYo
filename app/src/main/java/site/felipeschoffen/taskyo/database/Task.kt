@@ -8,7 +8,7 @@ import site.felipeschoffen.taskyo.Flag
 data class Task(
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0,
-    var description: String,
+    var description: String = "",
     var priority: Flag = Flag.WHITE,
     var listName: String = "unclassified"
     )

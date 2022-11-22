@@ -197,6 +197,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCreateTaskDialog() {
+        val task = Task()
         val dialog = BottomSheetDialog(this)
         val dialogBinding = DialogCreateTaskBinding.inflate(LayoutInflater.from(dialog.context))
         dialog.setContentView(dialogBinding.root)
@@ -204,9 +205,40 @@ class MainActivity : AppCompatActivity() {
         dialog.create()
         dialog.window?.setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_VISIBLE)
         dialog.show()
+
+        dialogBinding.ivFlag.setOnClickListener {
+            val (priorityDialogBinding, priorityDialog) = showPriorityDialog()
+
+            priorityDialogBinding.btnWhiteFlag.setOnClickListener {
+                dialogBinding.ivFlag.setImageResource(R.drawable.ic_flag_white)
+                task.priority = Flag.WHITE
+                priorityDialog.dismiss()
+            }
+
+            priorityDialogBinding.btnGreenFlag.setOnClickListener {
+                dialogBinding.ivFlag.setImageResource(R.drawable.ic_flag_green)
+                task.priority = Flag.GREEN
+                priorityDialog.dismiss()
+            }
+
+            priorityDialogBinding.btnOrangeFlag.setOnClickListener {
+                dialogBinding.ivFlag.setImageResource(R.drawable.ic_flag_orange)
+                task.priority = Flag.ORANGE
+                priorityDialog.dismiss()
+            }
+
+            priorityDialogBinding.btnRedFlag.setOnClickListener {
+                dialogBinding.ivFlag.setImageResource(R.drawable.ic_flag_red)
+                task.priority = Flag.RED
+                priorityDialog.dismiss()
+            }
+
+        }
+
         dialogBinding.btnSave.setOnClickListener {
-            val task =
-                Task(description = dialogBinding.etTask.text.toString(), listName = selectedList)
+            task.description = dialogBinding.etTask.text.toString()
+            task.listName= selectedList
+
             recordTask(task)
             dialog.dismiss()
         }
@@ -253,6 +285,24 @@ class MainActivity : AppCompatActivity() {
         rvTasks.adapter = TasksAdapter(tasks)
         rvTasks.layoutManager = LinearLayoutManager(this)
         rvTasks.adapter?.notifyDataSetChanged()
+    }
+
+    private fun showPriorityDialog() : Pair<DialogFlagSelectorBinding, Dialog>{
+        val dialogBinding = DialogFlagSelectorBinding.inflate(layoutInflater)
+        val dialog = Dialog(this@MainActivity)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(dialogBinding.root)
+        dialog.show()
+
+        return dialogBinding to dialog
+    }
+
+    private fun updateTaskFlagPriority(task: Task, flag: Flag) {
+        lifecycleScope.launch {
+            task.priority = flag
+            getTaskDao().update(task)
+            showTasksFromSelectedList()
+        }
     }
 
     private inner class TasksListAdapter(private val listOfTaskLists: List<TaskList>) :
@@ -366,16 +416,27 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 binding.ivFlag.setOnClickListener {
-                    showPriorityDialog()
-                }
-            }
+                    val (priorityDialogBinding, priorityDialog) = showPriorityDialog()
+                    priorityDialogBinding.btnWhiteFlag.setOnClickListener {
+                        updateTaskFlagPriority(task, Flag.WHITE)
+                        priorityDialog.dismiss()
+                    }
 
-            fun showPriorityDialog() {
-                val dialogBinding = DialogFlagSelectorBinding.inflate(layoutInflater)
-                val dialog = Dialog(this@MainActivity)
-                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                dialog.setContentView(dialogBinding.root)
-                dialog.show()
+                    priorityDialogBinding.btnGreenFlag.setOnClickListener {
+                        updateTaskFlagPriority(task, Flag.GREEN)
+                        priorityDialog.dismiss()
+                    }
+
+                    priorityDialogBinding.btnOrangeFlag.setOnClickListener {
+                        updateTaskFlagPriority(task, Flag.ORANGE)
+                        priorityDialog.dismiss()
+                    }
+
+                    priorityDialogBinding.btnRedFlag.setOnClickListener {
+                        updateTaskFlagPriority(task, Flag.RED)
+                        priorityDialog.dismiss()
+                    }
+                }
             }
         }
     }
