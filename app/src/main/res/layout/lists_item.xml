@@ -9,7 +9,7 @@
         android:id="@+id/btnList"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@drawable/list_item_background"
+        android:background="@drawable/task_item_background_middle"
         android:textColor="@drawable/custom_button_click_blue_600"
         android:clickable="true"
         android:focusable="true"

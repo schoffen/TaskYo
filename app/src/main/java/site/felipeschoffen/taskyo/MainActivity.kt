@@ -255,7 +255,8 @@ class MainActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: TaskListViewHolder, position: Int) {
             val itemCurrent = listOfTaskLists[position]
-            holder.bind(itemCurrent)
+            val last = position == listOfTaskLists.size - 1
+            holder.bind(itemCurrent, last)
         }
 
         override fun getItemCount(): Int {
@@ -265,7 +266,14 @@ class MainActivity : AppCompatActivity() {
         private inner class TaskListViewHolder(val binding: ListsItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(taskList: TaskList) {
+            fun bind(taskList: TaskList, last: Boolean) {
+                if (last) {
+                    binding.btnList.background = AppCompatResources.getDrawable(
+                        this@MainActivity,
+                        R.drawable.task_item_background_first
+                    )
+                }
+
                 binding.btnList.text = taskList.name
 
                 binding.btnList.setOnClickListener {
