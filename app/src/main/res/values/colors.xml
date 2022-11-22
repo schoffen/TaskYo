@@ -12,4 +12,6 @@
     <color name="blue_600">#001242</color>
     <color name="blue_400">#005E7C</color>
     <color name="blue_200">#0094C6</color>
+    <color name="darker_gray">#313131</color>
+    <color name="light_gray">#DFDFDF</color>
 </resources>

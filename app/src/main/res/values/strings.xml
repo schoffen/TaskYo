@@ -8,4 +8,15 @@
     <string name="unclassified_tasks">UNCLASSIFIED TASKS</string>
     <string name="save">Save</string>
     <string name="create">CREATE</string>
+    <string name="new_list">+ new list</string>
+    <string name="no_priority">No Priority</string>
+    <string name="low_priority">Low Priority</string>
+    <string name="medium_priority">Medium Priority</string>
+    <string name="high_priority">High Priority</string>
+    <string name="flag">flag</string>
+    <string name="delete">delete</string>
+    <string name="plus_new_list">+ New List</string>
+    <string name="lists_menu">lists menu</string>
+    <string name="home_menu">home</string>
+    <string name="config">config</string>
 </resources>

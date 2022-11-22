@@ -1,12 +1,12 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
-    <style name="Theme.TaskYo" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.TaskYo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_200</item>
+        <item name="colorPrimary">@color/darker_gray</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondary">@color/blue_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
@@ -19,4 +19,9 @@
     <style name="dark_blue_background">
         <item name="android:background">@color/blue_600</item>
     </style>
+
+    <style name="task_item_background">
+        <item name="android:backgroundTint">@color/darker_gray</item>
+    </style>
+
 </resources>

@@ -7,12 +7,12 @@
     <!-- Focused and pressed -->
     <item android:state_focused="true"
         android:state_pressed="true"
-        android:color="@color/blue_200" />
+        android:color="@color/blue_600" />
 
     <!-- Unfocused and pressed -->
     <item android:state_focused="false"
         android:state_pressed="true"
-        android:color="@color/blue_200" />
+        android:color="@color/blue_600" />
 
     <!-- Default color -->
     <item android:color="#ffffff" />

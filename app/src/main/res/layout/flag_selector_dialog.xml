@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dark_blue_background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5sp"
+    >
+
+    <LinearLayout
+        android:id="@+id/btn_white_flag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5sp">
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:text="@string/no_priority" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:src="@drawable/ic_white_flag"
+            android:contentDescription="@string/flag" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_green_flag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5sp">
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:text="@string/low_priority" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:src="@drawable/ic_green_flag"
+            android:contentDescription="@string/flag" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_orange_flag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5sp">
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:text="@string/medium_priority" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:src="@drawable/ic_orange_flag"
+            android:contentDescription="@string/flag"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/btn_red_flag"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingHorizontal="5sp">
+
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:text="@string/high_priority" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingHorizontal="5sp"
+            android:src="@drawable/ic_red_flag"
+            android:contentDescription="@string/flag"/>
+
+    </LinearLayout>
+</LinearLayout>

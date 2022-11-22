@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/dark_blue_background"
+    android:id="@+id/cl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="5sp"
+    android:paddingHorizontal="10sp"
+    android:paddingVertical="10sp"
     tools:context=".MainActivity">
 
     <TextView
@@ -15,6 +16,7 @@
         android:text="@string/unclassified_tasks"
         android:textAlignment="center"
         android:textSize="30sp"
+        android:paddingBottom="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:itemCount="5"
-            tools:listitem="@layout/task_item" >
+            tools:listitem="@layout/task_item">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -40,64 +42,102 @@
 
     <ScrollView
         android:id="@+id/sv_lists"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_new_list"
-        app:layout_constraintStart_toEndOf="@id/btn_unclassified_tasks">
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_new_list"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_lists"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/lists_item"
-            tools:itemCount="2"/>
+            tools:itemCount="2"
+            tools:listitem="@layout/lists_item" />
     </ScrollView>
 
-<!--    <ImageView-->
-<!--        android:id="@+id/iv_line"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/line"-->
-<!--        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_line"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:src="@drawable/line"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <Button
+    <TextView
         android:id="@+id/btn_new_list"
-        android:layout_width="wrap_content"
+        android:layout_width="120sp"
         android:layout_height="wrap_content"
+        android:background="@drawable/list_item_background"
         android:paddingHorizontal="10sp"
-        android:text="+ New List"
-        android:textColor="@drawable/custom_button_click"
-        android:textSize="16sp"
-        android:background="#00000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/btn_unclassified_tasks"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00000000"
-        android:backgroundTint="#00000000"
-        android:textColor="@drawable/custom_button_click"
-        android:text="HOME"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingVertical="6sp"
+        android:text="@string/plus_new_list"
+        android:textColor="@drawable/custom_button_click_blue_600"
+        android:textSize="12sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom_menu"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="35sp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_lists"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/lists_item_click"
+            android:contentDescription="@string/lists_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/home_item_click"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/home_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/config"
+            android:src="@drawable/menu_item_click"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_create_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20sp"
         android:src="@drawable/ic_plus"
-        android:layout_margin="5sp"
-        app:backgroundTint="@color/blue_200"
-        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom_menu"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="contentDescription,SpeakableTextPresentCheck" />
 
 

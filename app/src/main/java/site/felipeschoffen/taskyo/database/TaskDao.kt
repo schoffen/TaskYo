@@ -1,7 +1,6 @@
 package site.felipeschoffen.taskyo.database
 
 import androidx.room.*
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
@@ -17,6 +16,9 @@ interface TaskDao {
     @Query("SELECT * FROM `tasks-table`")
     fun fetchAllTasks(): List<Task>
 
-    @Query("SELECT * FROM `tasks-table` where listName = :listName")
+    @Query("SELECT * FROM `tasks-table` WHERE listName = :listName")
     fun fetchTasksByListName(listName: String): List<Task>
+
+    @Query("DELETE FROM `tasks-table` WHERE listName = :listName")
+    fun deleteTasksByTaskList(listName: String)
 }
