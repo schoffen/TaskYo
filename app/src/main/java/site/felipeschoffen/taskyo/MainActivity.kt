@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import site.felipeschoffen.taskyo.databinding.ActivityMainBinding
-import site.felipeschoffen.taskyo.databinding.TaskItemBinding
+import site.felipeschoffen.taskyo.databinding.ItemTaskBinding
 import android.view.WindowManager.LayoutParams
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -19,14 +19,14 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.lifecycle.lifecycleScope
 import site.felipeschoffen.taskyo.database.Task
-import site.felipeschoffen.taskyo.databinding.CreateTaskDialogBinding
+import site.felipeschoffen.taskyo.databinding.DialogCreateTaskBinding
 import kotlinx.coroutines.*
 import site.felipeschoffen.taskyo.database.TaskDao
 import site.felipeschoffen.taskyo.database.TaskList
 import site.felipeschoffen.taskyo.database.TaskListDao
-import site.felipeschoffen.taskyo.databinding.CreateTaskListDialogBinding
-import site.felipeschoffen.taskyo.databinding.FlagSelectorDialogBinding
-import site.felipeschoffen.taskyo.databinding.ListsItemBinding
+import site.felipeschoffen.taskyo.databinding.DialogCreateTaskListBinding
+import site.felipeschoffen.taskyo.databinding.DialogFlagSelectorBinding
+import site.felipeschoffen.taskyo.databinding.ItemListsBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showCreateTaskListDialog() {
         val dialog = BottomSheetDialog(this)
-        val dialogBinding = CreateTaskListDialogBinding.inflate(LayoutInflater.from(dialog.context))
+        val dialogBinding = DialogCreateTaskListBinding.inflate(LayoutInflater.from(dialog.context))
         dialog.setContentView(dialogBinding.root)
         dialog.create()
         dialog.window?.setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_VISIBLE)
@@ -198,7 +198,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showCreateTaskDialog() {
         val dialog = BottomSheetDialog(this)
-        val dialogBinding = CreateTaskDialogBinding.inflate(LayoutInflater.from(dialog.context))
+        val dialogBinding = DialogCreateTaskBinding.inflate(LayoutInflater.from(dialog.context))
         dialog.setContentView(dialogBinding.root)
         dialog.window?.setDimAmount(0f) // Set bottom sheet dialog background to transparent
         dialog.create()
@@ -260,7 +260,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskListViewHolder {
             val binding =
-                ListsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ItemListsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return TaskListViewHolder(binding)
         }
 
@@ -274,7 +274,7 @@ class MainActivity : AppCompatActivity() {
             return listOfTaskLists.size
         }
 
-        private inner class TaskListViewHolder(val binding: ListsItemBinding) :
+        private inner class TaskListViewHolder(val binding: ItemListsBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
             fun bind(taskList: TaskList, last: Boolean) {
@@ -319,7 +319,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TasksViewHolder {
             val binding =
-                TaskItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return TasksViewHolder(binding)
         }
 
@@ -334,7 +334,7 @@ class MainActivity : AppCompatActivity() {
             return taskList.size
         }
 
-        private inner class TasksViewHolder(val binding: TaskItemBinding) :
+        private inner class TasksViewHolder(val binding: ItemTaskBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
             fun bind(task: Task, first: Boolean, last: Boolean) {
@@ -371,7 +371,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             fun showPriorityDialog() {
-                val dialogBinding = FlagSelectorDialogBinding.inflate(layoutInflater)
+                val dialogBinding = DialogFlagSelectorBinding.inflate(layoutInflater)
                 val dialog = Dialog(this@MainActivity)
                 dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 dialog.setContentView(dialogBinding.root)

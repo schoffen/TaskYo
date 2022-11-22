@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:itemCount="5"
-            tools:listitem="@layout/task_item">
+            tools:listitem="@layout/item_task">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -56,7 +56,7 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="2"
-            tools:listitem="@layout/lists_item" />
+            tools:listitem="@layout/item_lists" />
     </ScrollView>
 
     <!--    <ImageView-->
