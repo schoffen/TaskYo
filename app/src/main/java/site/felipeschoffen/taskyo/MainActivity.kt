@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnHome.setOnClickListener {
             closeAllOpenMenus()
-            homeButtonBehavior()
+            homeMenuBehavior()
         }
 
     }
@@ -97,11 +97,22 @@ class MainActivity : AppCompatActivity() {
         if (listMenuSwitch) {
             listMenuBehavior()
         }
+
+        setHomeMenuIcon(false)
     }
 
-    private fun homeButtonBehavior() {
+    private fun homeMenuBehavior() {
         selectedList = "unclassified"
+        setHomeMenuIcon(true)
         showTasksFromSelectedList()
+    }
+
+    private fun setHomeMenuIcon(colored: Boolean) {
+        if (colored) {
+            binding.btnHome.setImageResource(R.drawable.ic_menu_home_colored)
+        } else {
+            binding.btnHome.setImageResource(R.drawable.ic_menu_home_gray)
+        }
     }
 
     private fun listMenuBehavior() {
@@ -166,7 +177,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun deleteTaskList(taskList: TaskList) {
         lifecycleScope.launch {
-            homeButtonBehavior()
+            homeMenuBehavior()
 
             Thread {
                 getTaskDao().deleteTasksByTaskList(taskList.name)
@@ -237,7 +248,7 @@ class MainActivity : AppCompatActivity() {
 
         dialogBinding.btnSave.setOnClickListener {
             task.description = dialogBinding.etTask.text.toString()
-            task.listName= selectedList
+            task.listName = selectedList
 
             recordTask(task)
             dialog.dismiss()
@@ -287,7 +298,7 @@ class MainActivity : AppCompatActivity() {
         rvTasks.adapter?.notifyDataSetChanged()
     }
 
-    private fun showPriorityDialog() : Pair<DialogFlagSelectorBinding, Dialog>{
+    private fun showPriorityDialog(): Pair<DialogFlagSelectorBinding, Dialog> {
         val dialogBinding = DialogFlagSelectorBinding.inflate(layoutInflater)
         val dialog = Dialog(this@MainActivity)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -331,7 +342,7 @@ class MainActivity : AppCompatActivity() {
                 if (last) {
                     binding.btnList.background = AppCompatResources.getDrawable(
                         this@MainActivity,
-                        R.drawable.task_item_background_first
+                        R.drawable.recycler_view_item_background_first
                     )
                 }
 
@@ -391,14 +402,14 @@ class MainActivity : AppCompatActivity() {
                 if (first) {
                     binding.cLMain.background = AppCompatResources.getDrawable(
                         this@MainActivity,
-                        R.drawable.task_item_background_first
+                        R.drawable.recycler_view_item_background_first
                     )
                 }
 
                 if (last) {
                     binding.cLMain.background = AppCompatResources.getDrawable(
                         this@MainActivity,
-                        R.drawable.task_item_background_last
+                        R.drawable.recycler_view_item_background_last
                     )
                 }
 
