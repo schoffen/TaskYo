@@ -5,7 +5,6 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +38,7 @@ class MainActivity : AppCompatActivity() {
     private var selectedList: String = "unclassified"
 
     private var listMenuSwitch = false
+    private var completeTaskSwitch = true
 
     private val toBottom: Animation by lazy {
         AnimationUtils.loadAnimation(
@@ -54,11 +54,26 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    private val toTop: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.to_top
+        )
+    }
+
+    private val fromTop: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            this,
+            R.anim.from_top
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        completeTasksButtonAnimation()
         showTasksFromSelectedList()
         showAllTaskLists()
 
@@ -88,6 +103,21 @@ class MainActivity : AppCompatActivity() {
             closeAllOpenMenus()
             homeMenuBehavior()
         }
+
+        binding.bntCompletedTasks.setOnClickListener {
+            completeTasksButtonAnimation()
+        }
+    }
+
+    private fun completeTasksButtonAnimation() {
+        if (!completeTaskSwitch) {
+            binding.rvCompleteTasks.startAnimation(fromTop)
+            binding.bntCompletedTasks.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_down, 0)
+        } else {
+            binding.rvCompleteTasks.startAnimation(toTop)
+            binding.bntCompletedTasks.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_left, 0)
+        }
+        completeTaskSwitch = !completeTaskSwitch
     }
 
     private fun changeListTitle() {
@@ -412,7 +442,8 @@ class MainActivity : AppCompatActivity() {
             val itemCurrent = taskList[position]
             val first = position == 0
             val last = position == (taskList.size - 1)
-            holder.bind(itemCurrent, first, last)
+            val unique = taskList.size == 1
+            holder.bind(itemCurrent, first, last, unique)
         }
 
         override fun getItemCount(): Int {
@@ -422,7 +453,7 @@ class MainActivity : AppCompatActivity() {
         private inner class TasksViewHolder(val binding: ItemTaskBinding) :
             RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(task: Task, first: Boolean, last: Boolean) {
+            fun bind(task: Task, first: Boolean, last: Boolean, unique: Boolean) {
                 if (first) {
                     binding.cLMain.background = AppCompatResources.getDrawable(
                         this@MainActivity,
@@ -434,6 +465,13 @@ class MainActivity : AppCompatActivity() {
                     binding.cLMain.background = AppCompatResources.getDrawable(
                         this@MainActivity,
                         R.drawable.recycler_view_item_background_last
+                    )
+                }
+
+                if (unique) {
+                    binding.cLMain.background = AppCompatResources.getDrawable(
+                        this@MainActivity,
+                        R.drawable.recycler_view_item_background_unique
                     )
                 }
 
