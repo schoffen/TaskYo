@@ -5,12 +5,11 @@
     android:layout_height="30sp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:paddingHorizontal="10sp"
     android:background="@drawable/recycler_view_item_background_middle"
     style="@style/task_item_background" >
 
-    <RadioButton
-        android:id="@+id/rb_complete"
+    <CheckBox
+        android:id="@+id/cb_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +25,7 @@
         android:layout_marginHorizontal="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/iv_flag"
-        app:layout_constraintStart_toEndOf="@id/rb_complete"
+        app:layout_constraintStart_toEndOf="@id/cb_complete"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -46,6 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_task_delete"
+        android:paddingHorizontal="5sp"
         android:contentDescription="@string/delete"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

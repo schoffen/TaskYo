@@ -19,4 +19,6 @@
     <string name="lists_menu">lists menu</string>
     <string name="home_menu">home</string>
     <string name="config">config</string>
+    <string name="complete">Complete</string>
+    <string name="completed">Completed</string>
 </resources>

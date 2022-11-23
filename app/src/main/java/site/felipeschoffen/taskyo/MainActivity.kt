@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var rvTasks: RecyclerView
     private lateinit var rvLists: RecyclerView
+    private lateinit var rvCompletedTasks: RecyclerView
 
     private var selectedList: String = "unclassified"
 
@@ -86,7 +88,6 @@ class MainActivity : AppCompatActivity() {
             closeAllOpenMenus()
             homeMenuBehavior()
         }
-
     }
 
     private fun changeListTitle() {
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun homeMenuBehavior() {
         selectedList = "unclassified"
-        setHomeMenuIcon(true)
+        //setHomeMenuIcon(true)
         showTasksFromSelectedList()
     }
 
@@ -275,7 +276,14 @@ class MainActivity : AppCompatActivity() {
 
             runOnUiThread {
                 changeListTitle()
-                updateTasksRecyclerView(tasks)
+
+                updateTasksRecyclerView(tasks.filter { task ->
+                    !task.complete
+                })
+
+                updateCompletedTasksRecyclerView(tasks.filter { task ->
+                    task.complete
+                })
             }
         }.start()
     }
@@ -298,6 +306,14 @@ class MainActivity : AppCompatActivity() {
         rvTasks.adapter?.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private fun updateCompletedTasksRecyclerView(tasks: List<Task>) {
+        rvCompletedTasks = binding.rvCompleteTasks
+        rvCompletedTasks.adapter = CompletedTasksAdapter(tasks)
+        rvCompletedTasks.layoutManager = LinearLayoutManager(this)
+        rvCompletedTasks.adapter?.notifyDataSetChanged()
+    }
+
     private fun showPriorityDialog(): Pair<DialogFlagSelectorBinding, Dialog> {
         val dialogBinding = DialogFlagSelectorBinding.inflate(layoutInflater)
         val dialog = Dialog(this@MainActivity)
@@ -311,6 +327,14 @@ class MainActivity : AppCompatActivity() {
     private fun updateTaskFlagPriority(task: Task, flag: Flag) {
         lifecycleScope.launch {
             task.priority = flag
+            getTaskDao().update(task)
+            showTasksFromSelectedList()
+        }
+    }
+
+    private fun updateTaskComplete(task: Task, complete: Boolean) {
+        lifecycleScope.launch {
+            task.complete = complete
             getTaskDao().update(task)
             showTasksFromSelectedList()
         }
@@ -447,6 +471,75 @@ class MainActivity : AppCompatActivity() {
                         updateTaskFlagPriority(task, Flag.RED)
                         priorityDialog.dismiss()
                     }
+                }
+
+                binding.cbComplete.setOnCheckedChangeListener { view, _ ->
+                        view.isChecked = false
+                        updateTaskComplete(task, true)
+                }
+            }
+        }
+    }
+
+    private inner class CompletedTasksAdapter(private val taskList: List<Task>) :
+        RecyclerView.Adapter<CompletedTasksAdapter.CompletedTasksViewHolder>() {
+
+        override fun onCreateViewHolder(
+            parent: ViewGroup,
+            viewType: Int
+        ): CompletedTasksViewHolder {
+            val binding =
+                ItemTaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return CompletedTasksViewHolder(binding)
+        }
+
+        override fun onBindViewHolder(holder: CompletedTasksViewHolder, position: Int) {
+            val itemCurrent = taskList[position]
+            val last = position == (taskList.size - 1)
+            holder.bind(itemCurrent, last)
+        }
+
+        override fun getItemCount(): Int {
+            return taskList.size
+        }
+
+        private inner class CompletedTasksViewHolder(val binding: ItemTaskBinding) :
+            RecyclerView.ViewHolder(binding.root) {
+
+            fun bind(task: Task, last: Boolean) {
+
+                if (last) {
+                    binding.cLMain.background = AppCompatResources.getDrawable(
+                        this@MainActivity,
+                        R.drawable.recycler_view_item_background_last
+                    )
+                }
+
+                binding.tvTask.text = task.description
+
+                when (task.priority) {
+                    Flag.WHITE -> binding.ivFlag.setImageResource(R.drawable.ic_flag_white)
+                    Flag.GREEN -> binding.ivFlag.setImageResource(R.drawable.ic_flag_green)
+                    Flag.ORANGE -> binding.ivFlag.setImageResource(R.drawable.ic_flag_orange)
+                    Flag.RED -> binding.ivFlag.setImageResource(R.drawable.ic_flag_red)
+                }
+
+                binding.btnDelete.setOnClickListener {
+                    deleteTask(task)
+                }
+
+                binding.cbComplete.setOnCheckedChangeListener { _, isChecked ->
+                    if (!isChecked) {
+                        task.complete = false
+                        showTasksFromSelectedList()
+                    }
+                }
+
+                binding.cbComplete.isChecked = true
+
+                binding.cbComplete.setOnCheckedChangeListener { view, _ ->
+                    view.isChecked = false
+                    updateTaskComplete(task, false)
                 }
             }
         }
