@@ -78,105 +78,82 @@
         </ScrollView>
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/sv_lists"
+    <LinearLayout
+        android:id="@+id/ll_lists_menu"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/btn_new_list"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginBottom="10sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_lists"
+        app:layout_constraintStart_toStartOf="parent"
+        >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_lists"
+        <ScrollView
+            android:id="@+id/sv_lists"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:itemCount="2"
-            tools:listitem="@layout/item_lists" />
-    </ScrollView>
+            android:layout_weight="1">
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/iv_line"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:src="@drawable/line"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/btn_unclassified_tasks"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_lists"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_lists" />
+        </ScrollView>
 
-    <TextView
-        android:id="@+id/btn_new_list"
-        style="@style/list_item_background"
-        android:layout_width="120sp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10sp"
-        android:background="@drawable/recycler_view_item_background_last"
-        android:paddingHorizontal="10sp"
-        android:paddingVertical="6sp"
-        android:text="@string/plus_new_list"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/tl_bottom_menu"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <LinearLayout
-        android:id="@+id/tl_bottom_menu"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/btn_lists"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+        <TextView
+            android:id="@+id/btn_unclassified"
+            style="@style/list_item_background"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="@string/lists_menu"
-            android:focusable="true"
-            android:src="@drawable/click_menu_lists_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:background="@drawable/recycler_view_item_background_first"
+            android:paddingHorizontal="10sp"
+            android:paddingVertical="6sp"
+            android:text="@string/unclassified"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
-        <ImageView
-            android:id="@+id/btn_home"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+        <TextView
+            android:id="@+id/btn_new_list"
+            style="@style/list_item_background"
+            android:layout_width="120sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/recycler_view_item_background_last"
+            android:paddingHorizontal="10sp"
+            android:paddingVertical="6sp"
+            android:text="@string/plus_new_list"
             android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="@string/home_menu"
-            android:focusable="true"
-            android:src="@drawable/ic_menu_home_colored"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/btn_config"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:contentDescription="@string/config"
-            android:focusable="true"
-            android:src="@drawable/click_menu_config_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btn_lists"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:contentDescription="@string/lists_menu"
+        android:focusable="true"
+        android:layout_margin="10sp"
+        android:src="@drawable/click_menu_lists_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btn_create_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20sp"
         android:src="@drawable/ic_plus"
-        app:layout_constraintBottom_toTopOf="@id/tl_bottom_menu"
+        android:layout_margin="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="contentDescription,SpeakableTextPresentCheck" />
 

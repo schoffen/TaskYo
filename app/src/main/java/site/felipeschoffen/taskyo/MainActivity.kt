@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.size
 import androidx.lifecycle.lifecycleScope
 import site.felipeschoffen.taskyo.database.Task
 import site.felipeschoffen.taskyo.databinding.DialogCreateTaskBinding
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rvLists: RecyclerView
     private lateinit var rvCompletedTasks: RecyclerView
 
-    private var selectedList: String = "unclassified"
+    private var selectedList: String = "tarefas"
 
     private var listMenuSwitch = false
     private var completeTaskSwitch = true
@@ -99,13 +101,27 @@ class MainActivity : AppCompatActivity() {
             listMenuBehavior()
         }
 
-        binding.btnHome.setOnClickListener {
+        binding.btnUnclassified.setOnClickListener {
             closeAllOpenMenus()
             homeMenuBehavior()
         }
 
         binding.bntCompletedTasks.setOnClickListener {
             completeTasksButtonAnimation()
+        }
+    }
+
+    private fun changeDrawableUnclassifiedButton(first: Boolean) {
+        if (first) {
+            binding.btnUnclassified.background = AppCompatResources.getDrawable(
+                this@MainActivity,
+                R.drawable.recycler_view_item_background_first
+            )
+        } else {
+            binding.btnUnclassified.background = AppCompatResources.getDrawable(
+                this@MainActivity,
+                R.drawable.recycler_view_item_background_middle
+            )
         }
     }
 
@@ -128,22 +144,11 @@ class MainActivity : AppCompatActivity() {
         if (listMenuSwitch) {
             listMenuBehavior()
         }
-
-        setHomeMenuIcon(false)
     }
 
     private fun homeMenuBehavior() {
-        selectedList = "unclassified"
-        //setHomeMenuIcon(true)
+        selectedList = "tarefas"
         showTasksFromSelectedList()
-    }
-
-    private fun setHomeMenuIcon(colored: Boolean) {
-        if (colored) {
-            binding.btnHome.setImageResource(R.drawable.ic_menu_home_colored)
-        } else {
-            binding.btnHome.setImageResource(R.drawable.ic_menu_home_gray)
-        }
     }
 
     private fun listMenuBehavior() {
@@ -163,21 +168,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun setListMenuVisibility() {
         if (!listMenuSwitch) {
-            binding.svLists.visibility = View.VISIBLE
-            binding.btnNewList.visibility = View.VISIBLE
+            binding.llListsMenu.visibility = View.VISIBLE
         } else {
-            binding.svLists.visibility = View.INVISIBLE
-            binding.btnNewList.visibility = View.INVISIBLE
+            binding.llListsMenu.visibility = View.INVISIBLE
         }
     }
 
     private fun setListMenuAnimation() {
         if (!listMenuSwitch) {
-            binding.svLists.startAnimation(fromBottom)
-            binding.btnNewList.startAnimation(fromBottom)
+            binding.llListsMenu.startAnimation(fromBottom)
         } else {
-            binding.svLists.startAnimation(toBottom)
-            binding.btnNewList.startAnimation(toBottom)
+            binding.llListsMenu.startAnimation(toBottom)
         }
 
     }
@@ -192,6 +193,8 @@ class MainActivity : AppCompatActivity() {
         dialogBinding.btnSave.setOnClickListener {
             val taskList = TaskList(name = dialogBinding.etTaskList.text.toString())
             recordTaskList(taskList)
+
+            changeDrawableUnclassifiedButton(false)
 
             dialog.dismiss()
         }
@@ -226,6 +229,11 @@ class MainActivity : AppCompatActivity() {
 
             runOnUiThread {
                 updateTaskListRecyclerView(taskLists)
+                if (taskLists.isEmpty()) {
+                    changeDrawableUnclassifiedButton(true)
+                } else {
+                    changeDrawableUnclassifiedButton(false)
+                }
             }
         }.start()
     }
@@ -419,6 +427,7 @@ class MainActivity : AppCompatActivity() {
                     .setMessage("Delete ${taskList.name} ?")
                     .setPositiveButton("Delete") { dialogInterface, _ ->
                         deleteTaskList(taskList)
+
                         dialogInterface.dismiss()
                     }
                     .setNegativeButton("Cancel") { dialogInterface, _ ->
